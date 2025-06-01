@@ -1,0 +1,11 @@
+3. Que constatez-vous ? Pourquoi l’application est “UP” ?
+
+L’application est considérée "UP" car :
+
+- La base de données (db) est accessible
+- L’espace disque est suffisant
+- Le serveur répond au ping
+
+Ce sont les indicateurs par défaut de Spring Boot actuators.
+
+
