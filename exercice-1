@@ -1,0 +1,48 @@
+3. Que constatez-vous avec http://localhost:8080/actuator ?
+
+Cette requête retourne un objet JSON contenant une section "_links".
+Chaque lien représente un endpoint d’actuator disponible,:
+
+- /actuator/health
+- /actuator/info
+- /actuator/beans
+- /actuator/metrics
+
+Le endpoint /actuator agit comme un index de navigation HATEOAS vers tous les autres actuators exposés.
+Cela permet à un outil de monitoring de découvrir dynamiquement tous les points de contrôle disponibles.
+
+
+4. Que constatez-vous avec http://localhost:8080/actuator/info ?
+
+{}
+Cela signifie que l’actuator info est activé, mais aucune information n’a encore été configurée pour y être exposée.
+Il faut soit ajouter build-info.properties, soit enrichir l’InfoEndpoint pour voir du contenu.
+
+
+5. Que constatez-vous avec http://localhost:8080/actuator/beans ?
+
+On obtient une structure JSON listant tous les beans instanciés dans le ApplicationContext.
+
+Des beans créés automatiquement par Spring Boot
+
+Des beans annotés dans ton code avec @Service, @Repository, @Component, @Configuration, .
+
+Cet endpoint permet de voir la composition de Spring :
+ quels beans sont actifs, leur type, leur portée, leurs dépendances.
+
+
+6. Que constatez-vous avec http://localhost:8080/actuator/configprops ?
+
+On obtient un JSON regroupant toutes les propriétés de configuration chargées via application.properties,
+ application.yml et autres sources.
+
+- spring.datasource.*
+- spring.jpa.*
+- management.*
+- server.*
+
+Chaque entrée contient :
+
+le prefix => les inputs  => les values (masquées ****** si sensibles)
+
+C’est pour vérifier ce que Spring a réellement chargé comme configuration, et d’où elle vient.
